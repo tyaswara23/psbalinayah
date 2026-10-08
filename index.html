@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pondok Pesantren Al-Inayah - PSB Online</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            850: '#044e39',
+                            900: '#022c22',
+                        },
+                        gold: {
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+        .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef08a 0%, #eab308 50%, #ca8a04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-gold {
+            box-shadow: 0 0 20px rgba(234, 179, 8, 0.35);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="text-slate-800 bg-pattern antialiased selection:bg-emerald-600 selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 glass-card transition-all duration-300 shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Name -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-800 via-emerald-600 to-emerald-500 flex items-center justify-center text-gold-400 text-2xl shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-mosque"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-bold text-emerald-900 tracking-tight leading-none">AL-INAYAH</span>
+                        <span class="text-xs font-semibold text-gold-600 tracking-wider uppercase">Pondok Pesantren</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#beranda" class="text-sm font-semibold text-slate-700 hover:text-emerald-700 transition">Beranda</a>
+                    <a href="#profil" class="text-sm font-semibold text-slate-700 hover:text-emerald-700 transition">Profil</a>
+                    <a href="#cabang" class="text-sm font-semibold text-slate-700 hover:text-emerald-700 transition">Cabang</a>
+                    <a href="#program" class="text-sm font-semibold text-slate-700 hover:text-emerald-700 transition">Program</a>
+                    <a href="#alur" class="text-sm font-semibold text-slate-700 hover:text-emerald-700 transition">Alur PSB</a>
+                    <a href="#kontak" class="text-sm font-semibold text-slate-700 hover:text-emerald-700 transition">Kontak</a>
+                </nav>
+
+                <!-- CTA Button Header -->
+                <div class="hidden lg:flex items-center">
+                    <a href="#pendaftaran" class="relative inline-flex items-center px-6 py-2.5 rounded-full text-sm font-bold text-emerald-950 bg-gradient-to-r from-gold-400 via-gold-500 to-amber-500 hover:from-gold-300 hover:to-amber-400 transition-all shadow-md hover:shadow-lg glow-gold transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-user-plus mr-2"></i> Daftar Santri Baru
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#beranda" class="block py-2 text-base font-semibold text-slate-700 hover:text-emerald-700">Beranda</a>
+            <a href="#profil" class="block py-2 text-base font-semibold text-slate-700 hover:text-emerald-700">Profil</a>
+            <a href="#cabang" class="block py-2 text-base font-semibold text-slate-700 hover:text-emerald-700">Cabang</a>
+            <a href="#program" class="block py-2 text-base font-semibold text-slate-700 hover:text-emerald-700">Program</a>
+            <a href="#alur" class="block py-2 text-base font-semibold text-slate-700 hover:text-emerald-700">Alur PSB</a>
+            <a href="#kontak" class="block py-2 text-base font-semibold text-slate-700 hover:text-emerald-700">Kontak</a>
+            <a href="#pendaftaran" class="block w-full text-center py-3 rounded-xl font-bold text-emerald-950 bg-gold-400 hover:bg-gold-500 shadow">
+                <i class="fa-solid fa-user-plus mr-2"></i> Daftar Santri Baru
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative pt-12 pb-20 md:pt-20 md:pb-32 overflow-hidden bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-850 text-white">
+        <!-- Decorative Islamic Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#facc15_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-emerald-800/80 border border-emerald-600/50 text-gold-300 text-sm font-medium mb-6 backdrop-blur-sm shadow-inner">
+                        <i class="fa-solid fa-kaaba text-gold-400"></i>
+                        <span>Penerimaan Santri Baru (PSB) Tahun Ajaran 2025/2026</span>
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6">
+                        Mendidik Generasi <span class="text-gradient-gold">Rabbani</span> Berakhlak Mulia & Berilmu
+                    </h1>
+                    
+                    <p class="text-emerald-100/90 text-base sm:text-lg mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Pondok Pesantren Al-Inayah membentuk santri unggul yang menguasai Al-Qur'an, Kitab Turats (Kuning), Bahasa Asing, serta Teknologi & Kewirausahaan Modern.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                        <a href="#pendaftaran" class="w-full sm:w-auto px-8 py-4 rounded-xl text-emerald-950 font-bold bg-gradient-to-r from-gold-400 to-amber-500 hover:from-gold-300 hover:to-amber-400 transition-all shadow-xl hover:shadow-2xl glow-gold text-center transform hover:-translate-y-1">
+                            <i class="fa-solid fa-paper-plane mr-2"></i> Daftar Santri Baru (PSB)
+                        </a>
+                        <a href="#program" class="w-full sm:w-auto px-8 py-4 rounded-xl text-white font-semibold bg-emerald-800/60 border border-emerald-500/40 hover:bg-emerald-700/80 transition-all text-center backdrop-blur-sm">
+                            <i class="fa-solid fa-compass mr-2"></i> Jelajahi Program
+                        </a>
+                    </div>
+
+                    <p class="font-arabic text-2xl md:text-3xl text-gold-300/90 tracking-widest text-center lg:text-left">
+                        مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ
+                    </p>
+                </div>
+
+                <!-- Hero Graphic / Featured Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gold-500 to-emerald-400 rounded-3xl blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative rounded-3xl bg-emerald-900/90 border border-emerald-700/60 p-6 md:p-8 backdrop-blur-md shadow-2xl">
+                            <div class="relative h-64 sm:h-80 rounded-2xl overflow-hidden mb-6 group">
+                                <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&q=80&w=800" alt="Suasana Belajar Ponpes Al-Inayah" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/800x600/044e39/ffffff?text=Ponpes+Al-Inayah'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-emerald-950 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-4 left-4 right-4">
+                                    <span class="px-3 py-1 bg-gold-500 text-emerald-950 text-xs font-bold rounded-full uppercase">Unggulan</span>
+                                    <h3 class="text-lg font-bold text-white mt-1">Lingkungan Asri & Kondusif</h3>
+                                </div>
+                            </div>
+                            <!-- Small Info Badges -->
+                            <div class="grid grid-cols-2 gap-3 text-center">
+                                <div class="p-3 rounded-xl bg-emerald-800/50 border border-emerald-700/40">
+                                    <i class="fa-solid fa-certificate text-gold-400 text-xl mb-1"></i>
+                                    <p class="text-xs text-emerald-200">Terakreditasi A</p>
+                                </div>
+                                <div class="p-3 rounded-xl bg-emerald-800/50 border border-emerald-700/40">
+                                    <i class="fa-solid fa-shield-halved text-gold-400 text-xl mb-1"></i>
+                                    <p class="text-xs text-emerald-200">Asrama Aman 24/7</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Statistics Component -->
+            <div class="mt-16 pt-10 border-t border-emerald-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-800/40">
+                    <p class="text-3xl md:text-4xl font-extrabold text-gold-400 mb-1">2,500+</p>
+                    <p class="text-xs md:text-sm text-emerald-200 font-medium">Santri Aktif</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-800/40">
+                    <p class="text-3xl md:text-4xl font-extrabold text-gold-400 mb-1">4,000+</p>
+                    <p class="text-xs md:text-sm text-emerald-200 font-medium">Alumni Tersebar</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-800/40">
+                    <p class="text-3xl md:text-4xl font-extrabold text-gold-400 mb-1">5</p>
+                    <p class="text-xs md:text-sm text-emerald-200 font-medium">Cabang Pondok</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-emerald-900/40 border border-emerald-800/40">
+                    <p class="text-3xl md:text-4xl font-extrabold text-gold-400 mb-1">100%</p>
+                    <p class="text-xs md:text-sm text-emerald-200 font-medium">Bimbingan Khusus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFIL & SEJARAH SECTION -->
+    <section id="profil" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-700 font-bold text-sm uppercase tracking-wider">Mengenal Lebih Dekat</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Profil Pondok Pesantren Al-Inayah</h2>
+                <div class="w-20 h-1.5 bg-gold-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-emerald-900 mb-4">Sejarah & Khidmah Kami</h3>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Didirikan dengan komitmen tinggi untuk membumikan Al-Qur'an dan melestarikan keilmuan Islam klasik, **Pondok Pesantren Al-Inayah** terus berkembang menjadi lembaga pendidikan Islam modern yang berwawasan luas.
+                    </p>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Kami memadukan sistem pendidikan kurikulum pesantren salafiyah dengan pendidikan nasional, dibimbing oleh para ustadz dan ustadzah lulusan perguruan tinggi ternama dalam dan luar negeri (seperti Al-Azhar Kairo & Madinah).
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 flex items-start space-x-3">
+                            <i class="fa-solid fa-eye text-emerald-700 text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-emerald-950 text-sm">Visi</h4>
+                                <p class="text-xs text-slate-600 mt-1">Mencetak santri mutafaqqih fid-din, berakhlakul karimah, mandiri, dan berteknologi.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-xl bg-amber-50 border border-amber-100 flex items-start space-x-3">
+                            <i class="fa-solid fa-bullseye text-amber-700 text-2xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-amber-950 text-sm">Misi</h4>
+                                <p class="text-xs text-slate-600 mt-1">Pendidikan kurikulum terpadu, tahfizh intensif, serta pembentukan karakter kepemimpinan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Values Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-700 text-gold-400 flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-heart text-gold-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Akhlakul Karimah</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Menjadikan adab dan kebiasaan Islami sebagai fondasi utama kehidupan sehari-hari.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-700 text-gold-400 flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-book-quran text-gold-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Tahfizh Al-Qur'an</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Program hafalan Al-Qur'an bersanad dengan metode mutqin dan mudah dipahami.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-700 text-gold-400 flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-scroll text-gold-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Kitab Turats</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Mengkaji kitab-kitab kuning standar untuk memperdalam fiqih, tafsir, dan nahwu sharaf.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-700 text-gold-400 flex items-center justify-center text-xl font-bold mb-4">
+                            <i class="fa-solid fa-laptop-code text-gold-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-900 text-lg mb-2">Bahasa & IT</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Penguasaan Bahasa Arab-Inggris aktif serta keahlian teknologi digital masa kini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CABANG PONPES SECTION -->
+    <section id="cabang" class="py-20 bg-slate-100/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-700 font-bold text-sm uppercase tracking-wider">Jaringan Kampus</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Cabang Pondok Pesantren Al-Inayah</h2>
+                <p class="text-slate-600">Pilih cabang terdekat dan paling sesuai dengan minat serta jenjang pendidikan calon santri.</p>
+                <div class="w-20 h-1.5 bg-gold-500 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Branch Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&q=80&w=600" alt="Al-Inayah Pusat" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/044e39/ffffff?text=Al-Inayah+Pusat'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-emerald-800 text-gold-300 text-xs font-bold rounded-full">Pusat</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Al-Inayah Pusat</h3>
+                        <p class="text-xs text-slate-500 mb-4 flex items-center">
+                            <i class="fa-solid fa-location-dot text-emerald-600 mr-2"></i> Jl. Raya Utama No. 101, Kota Pusat
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">MTs</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">MA</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">PDF Ulya</span>
+                        </div>
+                        <p class="text-slate-600 text-xs mb-6 flex-1">Kampus utama fokus integrasi Pendidikan Formal & Kitab Turats secara intensif.</p>
+                        <a href="#pendaftaran" onclick="selectBranch('Al-Inayah Pusat')" class="w-full py-2.5 rounded-xl border border-emerald-700 text-emerald-800 font-bold text-xs text-center hover:bg-emerald-700 hover:text-white transition">
+                            Pilih Cabang Ini
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Branch Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?auto=format&fit=crop&q=80&w=600" alt="Al-Inayah Tahfizh" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/044e39/ffffff?text=Al-Inayah+Tahfizh'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-gold-500 text-emerald-950 text-xs font-bold rounded-full">Khusus Tahfizh</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Al-Inayah Tahfizh</h3>
+                        <p class="text-xs text-slate-500 mb-4 flex items-center">
+                            <i class="fa-solid fa-location-dot text-emerald-600 mr-2"></i> Jl. Bukit Perbukitan No. 45, Kebun
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">Tahfizh 30 Juz</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">SMP/SMA</span>
+                        </div>
+                        <p class="text-slate-600 text-xs mb-6 flex-1">Lingkungan tenang khusus untuk percepatan dan penyetoran hafalan Al-Qur'an 30 Juz.</p>
+                        <a href="#pendaftaran" onclick="selectBranch('Al-Inayah Tahfizh')" class="w-full py-2.5 rounded-xl border border-emerald-700 text-emerald-800 font-bold text-xs text-center hover:bg-emerald-700 hover:text-white transition">
+                            Pilih Cabang Ini
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Branch Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=600" alt="Al-Inayah Putri" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/044e39/ffffff?text=Al-Inayah+Putri'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-emerald-800 text-gold-300 text-xs font-bold rounded-full">Khusus Putri</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Al-Inayah Putri</h3>
+                        <p class="text-xs text-slate-500 mb-4 flex items-center">
+                            <i class="fa-solid fa-location-dot text-emerald-600 mr-2"></i> Jl. Melati Hijau No. 88, Kencana
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">MTs</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">MA</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">Tata Boga</span>
+                        </div>
+                        <p class="text-slate-600 text-xs mb-6 flex-1">Kompleks khusus santriwati dengan fasilitasi keterampilan keputrian & keilmuan Islam.</p>
+                        <a href="#pendaftaran" onclick="selectBranch('Al-Inayah Putri')" class="w-full py-2.5 rounded-xl border border-emerald-700 text-emerald-800 font-bold text-xs text-center hover:bg-emerald-700 hover:text-white transition">
+                            Pilih Cabang Ini
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Branch Card 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600" alt="Al-Inayah Modern & IT" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/044e39/ffffff?text=Al-Inayah+Modern+IT'">
+                        <span class="absolute top-3 right-3 px-3 py-1 bg-blue-700 text-white text-xs font-bold rounded-full">Modern & IT</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-2">Al-Inayah Tech</h3>
+                        <p class="text-xs text-slate-500 mb-4 flex items-center">
+                            <i class="fa-solid fa-location-dot text-emerald-600 mr-2"></i> Jl. Tekno Mandiri No. 12, Techno Park
+                        </p>
+                        <div class="mb-4 flex flex-wrap gap-1">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">SMK IT</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded">Programming</span>
+                        </div>
+                        <p class="text-slate-600 text-xs mb-6 flex-1">Fokus pengembangan keahlian Rekayasa Perangkat Lunak, Multimedia, & Bahasa Inggris.</p>
+                        <a href="#pendaftaran" onclick="selectBranch('Al-Inayah Tech (Modern & IT)')" class="w-full py-2.5 rounded-xl border border-emerald-700 text-emerald-800 font-bold text-xs text-center hover:bg-emerald-700 hover:text-white transition">
+                            Pilih Cabang Ini
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM UNGGULAN SECTION -->
+    <section id="program" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-700 font-bold text-sm uppercase tracking-wider">Kurikulum Terpadu</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Program Unggulan Ponpes</h2>
+                <p class="text-slate-600">Disusun secara komprehensif untuk mencetak generasi berkarakter ulama dan berjiwa pemimpin.</p>
+                <div class="w-20 h-1.5 bg-gold-500 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="p-8 rounded-2xl bg-gradient-to-br from-emerald-900 to-emerald-950 text-white shadow-lg relative overflow-hidden group">
+                    <div class="absolute -right-6 -bottom-6 text-emerald-800/40 text-9xl group-hover:scale-110 transition duration-500">
+                        <i class="fa-solid fa-quran"></i>
+                    </div>
+                    <div class="w-14 h-14 rounded-xl bg-gold-500 text-emerald-950 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Tahfizh Al-Qur'an 30 Juz</h3>
+                    <p class="text-emerald-100/80 text-sm leading-relaxed mb-6">Program bimbingan hafalan intensif dengan target mutqin, tajwid tajribi, dan sanad qira'ah bagi santri berbakat.</p>
+                    <ul class="space-y-2 text-xs text-emerald-200">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> Target 30 Juz dalam 3 Tahun</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> Bimbingan Muraja'ah Harian</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-gold-400 mr-2"></i> Ujian Munaqosyah & Wisuda</li>
+                    </ul>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-book-open text-emerald-700"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Kajian Kitab Turats</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Mengkaji secara mendalam kitab-kitab kuning standar keilmuan Islam: Fiqih, Nahwu Sharaf, Hadits, dan Tasawuf.</p>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Metode Sorogan & Bandongan</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Penguasaan Gramatika Bahasa Arab</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Bahtsul Masa'il Santri</li>
+                    </ul>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-language text-amber-700"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-3">Language Center (Bilingual)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">Penerapan bahasa Arab dan Inggris dalam percakapan harian (*Arabic & English Zone*) untuk menunjang wawasan global.</p>
+                    <ul class="space-y-2 text-xs text-slate-600">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Hari Bahasa Arab & Inggris</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Public Speaking / Muhadharah</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-emerald-600 mr-2"></i> Preparation TOEFL & TOAFL</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALUR PENDAFTARAN SECTION -->
+    <section id="alur" class="py-20 bg-emerald-950 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-400 font-bold text-sm uppercase tracking-wider">Mudah & Cepat</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Alur Pendaftaran Santri Baru</h2>
+                <p class="text-emerald-200">Langkah mudah untuk menjadi bagian dari keluarga besar Ponpes Al-Inayah.</p>
+                <div class="w-20 h-1.5 bg-gold-500 mx-auto rounded-full mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Step 1 -->
+                <div class="relative bg-emerald-900/60 p-6 rounded-2xl border border-emerald-800/80 text-center">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-extrabold text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">1</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Isi Form Online</h4>
+                    <p class="text-xs text-emerald-200 leading-relaxed">Lengkapi formulir pendaftaran melalui menu PSB online di website ini.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative bg-emerald-900/60 p-6 rounded-2xl border border-emerald-800/80 text-center">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-extrabold text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">2</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Konfirmasi WA</h4>
+                    <p class="text-xs text-emerald-200 leading-relaxed">Kirim formulir dan dapatkan Kode Pendaftaran & jadwal tes via WhatsApp Panitia.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative bg-emerald-900/60 p-6 rounded-2xl border border-emerald-800/80 text-center">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-extrabold text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">3</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Tes Seleksi</h4>
+                    <p class="text-xs text-emerald-200 leading-relaxed">Mengikuti tes pemetaan (Baca Al-Qur'an, Wawancara Orang Tua, & Pengetahuan Dasar).</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative bg-emerald-900/60 p-6 rounded-2xl border border-emerald-800/80 text-center">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-emerald-950 font-extrabold text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">4</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Daftar Ulang</h4>
+                    <p class="text-xs text-emerald-200 leading-relaxed">Pengumuman kelulusan dan penyelesaian administrasi daftar ulang santri baru.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULIR PENDAFTARAN SECTION -->
+    <section id="pendaftaran" class="py-20 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 p-6 sm:p-10 md:p-12 relative overflow-hidden">
+                <div class="absolute top-0 left-0 right-0 h-3 bg-gradient-to-r from-emerald-800 via-gold-500 to-emerald-600"></div>
+
+                <div class="text-center mb-10">
+                    <span class="px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">Formulir Pendaftaran Online</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-3">Penerimaan Santri Baru (PSB)</h2>
+                    <p class="text-slate-600 text-sm mt-2">Silakan isi formulir di bawah ini dengan data yang benar dan valid.</p>
+                </div>
+
+                <form id="psbForm" onsubmit="handleRegistration(event)" class="space-y-6">
+                    <!-- Data Calon Santri -->
+                    <div class="border-b border-slate-200 pb-6">
+                        <h3 class="text-lg font-bold text-emerald-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-user-graduate mr-2 text-gold-500"></i> Data Calon Santri
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap Santri *</label>
+                                <input type="text" id="namaSantri" required placeholder="Contoh: Muhammad Ahmad Hilmi" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Jenis Kelamin *</label>
+                                <select id="jenisKelamin" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm bg-white">
+                                    <option value="">-- Pilih Jenis Kelamin --</option>
+                                    <option value="Laki-laki">Laki-laki (Santri Wan)</option>
+                                    <option value="Perempuan">Perempuan (Santri Wati)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tempat, Tanggal Lahir *</label>
+                                <input type="text" id="ttl" required placeholder="Contoh: Jakarta, 12 Mei 2012" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pilihan Cabang & Program -->
+                    <div class="border-b border-slate-200 pb-6">
+                        <h3 class="text-lg font-bold text-emerald-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-school mr-2 text-gold-500"></i> Pilihan Pendidikan
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Pilih Cabang Pondok *</label>
+                                <select id="pilihanCabang" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm bg-white">
+                                    <option value="">-- Pilih Cabang Tujuan --</option>
+                                    <option value="Al-Inayah Pusat">Al-Inayah Pusat</option>
+                                    <option value="Al-Inayah Tahfizh">Al-Inayah Tahfizh</option>
+                                    <option value="Al-Inayah Putri">Al-Inayah Putri</option>
+                                    <option value="Al-Inayah Tech (Modern & IT)">Al-Inayah Tech (Modern & IT)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Jenjang / Program Pendidikan *</label>
+                                <select id="pilihanProgram" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm bg-white">
+                                    <option value="">-- Pilih Jenjang --</option>
+                                    <option value="Madrasah Tsanawiyah (MTs)">Madrasah Tsanawiyah (MTs)</option>
+                                    <option value="Madrasah Aliyah (MA)">Madrasah Aliyah (MA)</option>
+                                    <option value="Takhassus Tahfizh 30 Juz">Takhassus Tahfizh 30 Juz</option>
+                                    <option value="SMK IT / Modern">SMK IT / Modern</option>
+                                    <option value="Pendidikan Diniyah Formal (PDF)">Pendidikan Diniyah Formal (PDF)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Orang Tua & Wali -->
+                    <div>
+                        <h3 class="text-lg font-bold text-emerald-900 mb-4 flex items-center">
+                            <i class="fa-solid fa-users-gear mr-2 text-gold-500"></i> Data Orang Tua / Wali
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Orang Tua / Wali *</label>
+                                <input type="text" id="namaOrangTua" required placeholder="Contoh: H. Abdullah Fitri" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nomor WhatsApp / HP *</label>
+                                <input type="tel" id="noWhatsapp" required placeholder="Contoh: 08123456789" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm">
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Alamat Lengkap *</label>
+                                <textarea id="alamatLengkap" rows="3" required placeholder="Jl. Mawar No. 12, RT 01/RW 02, Kecamatan, Kabupaten/Kota..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-600 focus:border-transparent outline-none transition text-sm"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
+                        <button type="submit" class="w-full py-4 px-6 rounded-xl text-emerald-950 font-extrabold bg-gradient-to-r from-gold-400 via-gold-500 to-amber-500 hover:from-gold-300 hover:to-amber-400 shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Kirim Pendaftaran via WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI & GALERI SECTION -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-emerald-700 font-bold text-sm uppercase tracking-wider">Kesan & Pesan</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Kata Wali Santri & Alumni</h2>
+                <div class="w-20 h-1.5 bg-gold-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-gold-500 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm italic mb-6">"Alhamdulillah, anak saya dalam 2 tahun sudah hafal 15 Juz dan karakter kedisiplinannya meningkat pesat. Ponpes Al-Inayah sangat direkomendasikan!"</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-700 text-gold-300 flex items-center justify-center font-bold">H</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">H. Rahman Hakim</h4>
+                            <p class="text-xs text-slate-500">Wali Santri - Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-gold-500 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm italic mb-6">"Pendidikan bahasa dan penguasaan kitab kuning di Al-Inayah menjadi bekal utama saya hingga bisa melanjutkan studi ke Al-Azhar Kairo."</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-700 text-gold-300 flex items-center justify-center font-bold">A</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Ahmad Fauzi, Lc.</h4>
+                            <p class="text-xs text-slate-500">Alumni Angkatan 2020</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-gold-500 mb-4 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-600 text-sm italic mb-6">"Lingkungan yang aman dan pengawasan 24 jam membuat kami orang tua merasa tenang memondokkan putri kami di Cabang Putri Al-Inayah."</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-700 text-gold-300 flex items-center justify-center font-bold">I</div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Hj. Siti Nurhaliza</h4>
+                            <p class="text-xs text-slate-500">Wali Santriwati - Bandung</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & KONTAK -->
+    <footer id="kontak" class="bg-emerald-950 text-white pt-16 pb-8 border-t border-emerald-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Info Ponpes -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gold-500 text-emerald-950 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-mosque"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white tracking-wide">AL-INAYAH</span>
+                    </div>
+                    <p class="text-xs text-emerald-200/80 leading-relaxed mb-6">
+                        Pondok Pesantren Al-Inayah membina generasi Qur'ani berakhlak mulia, cerdas, dan siap bersaing di era global.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-emerald-950 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-emerald-950 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-emerald-950 transition"><i class="fa-brands fa-youtube text-sm"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-emerald-900 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-emerald-950 transition"><i class="fa-brands fa-whatsapp text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Link Cepat -->
+                <div>
+                    <h4 class="text-sm font-bold text-gold-400 uppercase tracking-wider mb-4">Navigasi Cepat</h4>
+                    <ul class="space-y-2 text-xs text-emerald-200">
+                        <li><a href="#beranda" class="hover:text-gold-400 transition">Beranda Utama</a></li>
+                        <li><a href="#profil" class="hover:text-gold-400 transition">Profil & Visi Misi</a></li>
+                        <li><a href="#cabang" class="hover:text-gold-400 transition">Cabang-Cabang Pondok</a></li>
+                        <li><a href="#program" class="hover:text-gold-400 transition">Program Unggulan</a></li>
+                        <li><a href="#pendaftaran" class="hover:text-gold-400 transition">Pendaftaran PSB Online</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="text-sm font-bold text-gold-400 uppercase tracking-wider mb-4">Sekretariat PSB</h4>
+                    <ul class="space-y-3 text-xs text-emerald-200">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-gold-400 mt-1 mr-3"></i>
+                            <span>Jl. Raya KH. Ahmad Dahlan No. 99, Kompleks Pesantren Al-Inayah Pusat</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone text-gold-400 mr-3"></i>
+                            <span>+62 812-3456-7890 (CS PSB)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope text-gold-400 mr-3"></i>
+                            <span>psb@alinayah.ponpes.id</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Google Maps Simulation -->
+                <div>
+                    <h4 class="text-sm font-bold text-gold-400 uppercase tracking-wider mb-4">Lokasi Pusat</h4>
+                    <div class="w-full h-32 rounded-xl overflow-hidden bg-emerald-900 border border-emerald-800 relative flex items-center justify-center text-center p-4">
+                        <div class="text-emerald-300 text-xs">
+                            <i class="fa-solid fa-map-location-dot text-3xl text-gold-400 mb-2 block"></i>
+                            <span>Peta Lokasi Google Maps Ponpes Al-Inayah Pusat</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-emerald-900 text-center text-xs text-emerald-400/80">
+                <p>&copy; 2025 Pondok Pesantren Al-Inayah. Hak Cipta Dilindungi Undang-Undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL BUKTI PENDAFTARAN -->
+    <div id="proofModal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-3xl mx-auto mb-3">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900">Pendaftaran Berhasil!</h3>
+                <p class="text-xs text-slate-500 mt-1">Bukti pendaftaran santri baru Ponpes Al-Inayah</p>
+            </div>
+
+            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 text-xs space-y-2 mb-6">
+                <div class="flex justify-between py-1 border-b border-slate-200">
+                    <span class="text-slate-500">No. Pendaftaran:</span>
+                    <span id="proofNo" class="font-bold text-emerald-800">REG-2025-001</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-200">
+                    <span class="text-slate-500">Nama Santri:</span>
+                    <span id="proofNama" class="font-bold text-slate-900">-</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-200">
+                    <span class="text-slate-500">Cabang Tujuan:</span>
+                    <span id="proofCabang" class="font-bold text-slate-900">-</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-200">
+                    <span class="text-slate-500">Program:</span>
+                    <span id="proofProgram" class="font-bold text-slate-900">-</span>
+                </div>
+                <div class="flex justify-between py-1">
+                    <span class="text-slate-500">Orang Tua / Wali:</span>
+                    <span id="proofOrtu" class="font-bold text-slate-900">-</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <a id="waSendBtn" target="_blank" class="w-full py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-sm text-center flex items-center justify-center">
+                    <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Lanjutkan Kirim ke WhatsApp CS
+                </a>
+                <button onclick="closeModal()" class="w-full py-3 rounded-xl border border-slate-300 text-slate-700 font-bold text-xs hover:bg-slate-100 transition">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Auto Select Branch from Card Button
+        function selectBranch(branchName) {
+            const branchSelect = document.getElementById('pilihanCabang');
+            if(branchSelect) {
+                branchSelect.value = branchName;
+            }
+        }
+
+        // Registration Form Processing & WhatsApp Redirect
+        function handleRegistration(event) {
+            event.preventDefault();
+
+            const namaSantri = document.getElementById('namaSantri').value;
+            const jenisKelamin = document.getElementById('jenisKelamin').value;
+            const ttl = document.getElementById('ttl').value;
+            const cabang = document.getElementById('pilihanCabang').value;
+            const program = document.getElementById('pilihanProgram').value;
+            const orangTua = document.getElementById('namaOrangTua').value;
+            const noHp = document.getElementById('noWhatsapp').value;
+            const alamat = document.getElementById('alamatLengkap').value;
+
+            // Generate Registration Code
+            const regNum = 'PSB-' + Math.floor(100000 + Math.random() * 900000);
+
+            // Populate Modal Data
+            document.getElementById('proofNo').innerText = regNum;
+            document.getElementById('proofNama').innerText = namaSantri;
+            document.getElementById('proofCabang').innerText = cabang;
+            document.getElementById('proofProgram').innerText = program;
+            document.getElementById('proofOrtu').innerText = orangTua;
+
+            // Create WhatsApp Message Format
+            const waNumber = "6281234567890"; // Ganti dengan nomor WhatsApp CS PSB Ponpes
+            const textMessage = `*PENDAFTARAN SANTRI BARU (PSB)*
+*PONDOK PESANTREN AL-INAYAH*
+
+*Kode Registrasi:* ${regNum}
+----------------------------------------
+*Nama Santri:* ${namaSantri}
+*Jenis Kelamin:* ${jenisKelamin}
+*TTL:* ${ttl}
+*Cabang Tujuan:* ${cabang}
+*Program/Jenjang:* ${program}
+----------------------------------------
+*Orang Tua / Wali:* ${orangTua}
+*No. HP/WA:* ${noHp}
+*Alamat:* ${alamat}
+
+Mohon konfirmasi dan informasi langkah seleksi selanjutnya. Terima kasih.`;
+
+            const encodedText = encodeURIComponent(textMessage);
+            const waUrl = `https://wa.me/${waNumber}?text=${encodedText}`;
+
+            document.getElementById('waSendBtn').href = waUrl;
+
+            // Show Proof Modal
+            document.getElementById('proofModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('proofModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
